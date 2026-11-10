@@ -28,14 +28,17 @@ export function Navbar({ cuenta, marca }: { cuenta?: ReactNode; marca?: ReactNod
   return (
     <header className={`fixed inset-x-0 top-0 z-50 px-3 transition-all duration-500 sm:px-5 ${scrolled ? "pt-3" : "pt-5"}`}>
       <nav
-        className={`relative mx-auto flex max-w-6xl items-center justify-between gap-3 overflow-hidden rounded-full border border-white/10 bg-ink/85 px-4 py-2.5 text-white backdrop-blur-xl transition-shadow duration-500 sm:px-5 ${
+        className={`relative mx-auto flex max-w-6xl items-center justify-between gap-3 rounded-full border border-white/10 bg-ink/85 px-4 py-2.5 text-white backdrop-blur-xl transition-shadow duration-500 sm:px-5 ${
           scrolled ? "shadow-2xl shadow-ink/25" : "shadow-lg shadow-ink/10"
         }`}
       >
-        <motion.div
-          className="absolute bottom-0 left-0 h-0.5 origin-left bg-gradient-to-r from-gold to-flame"
-          style={{ scaleX: scrollYProgress, width: "100%" }}
-        />
+        {/* La barra de progreso se recorta con su propio contenedor, así los menús desplegables no quedan ocultos */}
+        <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-full">
+          <motion.div
+            className="absolute bottom-0 left-0 h-0.5 origin-left bg-gradient-to-r from-gold to-flame"
+            style={{ scaleX: scrollYProgress, width: "100%" }}
+          />
+        </div>
         {marca ?? (
         <a href="#" className="group flex shrink-0 items-center gap-2">
             <motion.span

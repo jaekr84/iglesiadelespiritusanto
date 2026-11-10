@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from "motion/react";
 import { Check, Globe } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { Suspense, useState, useTransition } from "react";
+import { Suspense, useEffect, useRef, useState, useTransition } from "react";
 import { guardarIdioma } from "@/app/actions/idioma";
 import { useI18n } from "@/i18n/client";
 import { locales, nombresIdioma, ruta, sinIdioma, type Locale } from "@/i18n/config";
@@ -15,6 +15,22 @@ function Selector({ compacto = false }: { compacto?: boolean }) {
   const search = useSearchParams();
   const [abierto, setAbierto] = useState(false);
   const [pending, start] = useTransition();
+  const contenedor = useRef<HTMLDivElement>(null);
+
+  // Cerrar al hacer clic fuera o al pulsar Escape
+  useEffect(() => {
+    if (!abierto) return;
+    const fuera = (e: PointerEvent) => {
+      if (!contenedor.current?.contains(e.target as Node)) setAbierto(false);
+    };
+    const escape = (e: KeyboardEvent) => e.key === "Escape" && setAbierto(false);
+    document.addEventListener("pointerdown", fuera);
+    document.addEventListener("keydown", escape);
+    return () => {
+      document.removeEventListener("pointerdown", fuera);
+      document.removeEventListener("keydown", escape);
+    };
+  }, [abierto]);
 
   const cambiar = (l: Locale) => {
     setAbierto(false);
@@ -28,10 +44,11 @@ function Selector({ compacto = false }: { compacto?: boolean }) {
   };
 
   return (
-    <div className="relative">
+    <div ref={contenedor} className="relative">
       <button
         onClick={() => setAbierto(!abierto)}
         aria-label={t.nav.idioma}
+        aria-expanded={abierto}
         className={`flex items-center gap-1.5 rounded-full border border-white/20 px-3 py-1.5 text-sm text-white/85 transition hover:border-gold hover:text-gold ${pending ? "animate-pulse" : ""}`}
       >
         <Globe className="h-4 w-4" />
@@ -40,7 +57,6 @@ function Selector({ compacto = false }: { compacto?: boolean }) {
       <AnimatePresence>
         {abierto && (
           <>
-            <button className="fixed inset-0 z-40 cursor-default" aria-hidden tabIndex={-1} onClick={() => setAbierto(false)} />
             <motion.ul
               initial={{ opacity: 0, y: -8, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
