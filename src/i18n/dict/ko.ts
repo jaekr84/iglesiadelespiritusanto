@@ -2,14 +2,14 @@ import type { Dict } from "./es";
 
 const ko: Dict = {
   meta: {
-    titulo: "성령 교회",
+    titulo: "아르헨티나 성령의교회",
     descripcion: "성령 충만한 가족, 그리스도의 사랑으로 삶을 변화시킵니다.",
     foro: "게시판",
     panel: "관리자",
   },
   iglesia: {
-    nombre: "성령 교회",
-    nombreCorto: "성령 교회",
+    nombre: "아르헨티나 성령의교회",
+    nombreCorto: "성령의교회",
     lema: "성령 충만한 가족, 그리스도의 사랑으로 삶을 변화시킵니다.",
   },
   nav: {
@@ -27,7 +27,11 @@ const ko: Dict = {
     menu: "메뉴",
     idioma: "언어",
   },
+  instagram: { etiqueta: "Instagram", titulo: "인스타그램 최신 소식", seguir: "인스타그램 팔로우하기", ver: "인스타그램에서 보기" },
+  galeria: { etiqueta: "갤러리", titulo: "우리 가족의 순간들" },
   hero: {
+    direccion: "주소",
+    etiqueta: "아르헨티나 한인 오순절 교회",
     bienvenido: "환영합니다",
     visitanos: "이번 주일에 방문하세요",
     verEnVivo: "실시간 예배",

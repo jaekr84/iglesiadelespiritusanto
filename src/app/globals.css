@@ -43,3 +43,14 @@ body {
   .animate-aurora, .animate-marquee { animation: none; }
   html { scroll-behavior: auto; }
 }
+
+/* ── Landing v2 (editorial) ── */
+.v2-display {
+  font-family: var(--font-cormorant), var(--font-kr), serif;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.v2 ::selection { background: #8a1c2b; color: white; }
+
+/* En coreano, no cortar palabras al hacer salto de línea */
+:lang(ko) { word-break: keep-all; }

@@ -2,13 +2,13 @@
 // (usa la misma clave, p. ej. servicios.culto, en los tres archivos).
 
 export const iglesia = {
-  direccion: "Calle Principal 123, Tu Ciudad",
-  telefono: "+1 (555) 123-4567",
+  direccion: "José Mármol 964, CABA, Argentina",
+  telefono: "+54 11 0000-0000", // ✏️ completar
   email: "contacto@iglesiaespiritusanto.org",
-  mapaUrl: "https://www.google.com/maps?q=Calle+Principal+123&output=embed",
-  youtube: "https://youtube.com/",
-  facebook: "https://facebook.com/",
-  instagram: "https://instagram.com/",
+  mapaUrl: "https://www.google.com/maps?q=Jos%C3%A9+M%C3%A1rmol+964,+CABA,+Argentina&output=embed",
+  youtube: "https://www.youtube.com/@iglesiadelespiritusanto859",
+  facebook: "https://www.facebook.com/laiglesiadelespiritusanto",
+  instagram: "https://www.instagram.com/laiglesiadelespiritusanto.ig/",
   donacionesUrl: "#",
 };
 
@@ -43,3 +43,33 @@ export const estadisticas = [
   { id: "ministerios", valor: 12, sufijo: "" },
   { id: "vidas", valor: 1200, sufijo: "+" },
 ] as const;
+
+/**
+ * Foto opcional detrás de la portada (se ve en blanco y negro, muy tenue).
+ * Pon la imagen en public/fotos/ y escribe su ruta, p. ej. "/fotos/portada.jpg".
+ */
+export const fotoPortada: string | null = null;
+
+/** Fotos de la iglesia (convertidas para la web en public/fotos/web). */
+export const fotos = {
+  portada: "/fotos/web/culto-guitarra.jpg",
+  culto: "/fotos/web/culto-orquesta.jpg",
+  comunidad: "/fotos/web/comunidad-noche.jpg",
+  ministerios: {
+    alabanza: "/fotos/web/coro-jovenes-2.jpg",
+    ninos: "/fotos/web/ninos-navidad.jpg",
+    jovenes: "/fotos/web/jovenes.jpg",
+    matrimonios: "/fotos/web/coro-familias.jpg",
+    misiones: "/fotos/web/coro-jovenes.jpg",
+    social: "/fotos/web/grupo-pequeno.jpg",
+  },
+  galeria: [
+    "/fotos/web/comunidad-noche.jpg",
+    "/fotos/web/coro-familias.jpg",
+    "/fotos/web/culto-orquesta.jpg",
+    "/fotos/web/ninos-navidad.jpg",
+    "/fotos/web/coro-jovenes.jpg",
+    "/fotos/web/grupo-pequeno.jpg",
+    "/fotos/web/jovenes.jpg",
+  ],
+} as const;

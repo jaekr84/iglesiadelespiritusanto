@@ -30,7 +30,7 @@ function Contador({ valor, sufijo }: { valor: number; sufijo: string }) {
 export function About() {
   const { t } = useI18n();
   return (
-    <section id="nosotros" className="px-5 py-24">
+    <section id="nosotros" className="scroll-mt-24 px-5 py-24">
       <div className="mx-auto grid max-w-6xl items-center gap-16 md:grid-cols-2">
         <Reveal>
           <div className="relative min-h-96 sm:aspect-square">

@@ -84,7 +84,7 @@ export function NextService() {
   const s = Math.floor((diff / 1000) % 60);
 
   return (
-    <section id="horarios" className="relative bg-background px-5 py-24">
+    <section id="horarios" className="relative scroll-mt-24 px-5 py-20">
       <div className="mx-auto max-w-6xl">
         <Reveal>
           <div className="relative overflow-hidden rounded-[2rem] bg-ink p-8 text-white shadow-2xl sm:p-12">

@@ -1,13 +1,13 @@
 // Diccionario base (español). en.ts y ko.ts deben tener exactamente las mismas claves.
 const es = {
   meta: {
-    titulo: "Iglesia Espíritu Santo",
+    titulo: "Iglesia del Espíritu Santo",
     descripcion: "Una familia llena del Espíritu, transformando vidas con el amor de Cristo.",
     foro: "Foro",
     panel: "Panel",
   },
   iglesia: {
-    nombre: "Iglesia Espíritu Santo",
+    nombre: "Iglesia del Espíritu Santo",
     nombreCorto: "Espíritu Santo",
     lema: "Una familia llena del Espíritu, transformando vidas con el amor de Cristo.",
   },
@@ -26,7 +26,11 @@ const es = {
     menu: "Menú",
     idioma: "Idioma",
   },
+  instagram: { etiqueta: "Instagram", titulo: "Lo último en nuestro Instagram", seguir: "Síguenos en Instagram", ver: "Ver en Instagram" },
+  galeria: { etiqueta: "Galería", titulo: "Momentos de nuestra familia" },
   hero: {
+    direccion: "Dirección",
+    etiqueta: "Iglesia Pentecostal Coreana en Argentina",
     bienvenido: "Bienvenido a casa",
     visitanos: "Visítanos este domingo",
     verEnVivo: "Ver en vivo",

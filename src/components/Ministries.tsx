@@ -47,8 +47,11 @@ function Tarjeta({ m }: { m: (typeof ministerios)[number] }) {
 export function Ministries() {
   const { t } = useI18n();
   return (
-    <section id="ministerios" className="bg-ink px-5 py-24 text-white">
-      <div className="mx-auto max-w-6xl">
+    <section id="ministerios" className="scroll-mt-24 px-3 py-10 sm:px-5">
+      <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] bg-ink px-6 py-20 text-white shadow-2xl shadow-ink/20 sm:px-12">
+        <div className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-flame/20 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-40 -left-24 h-96 w-96 rounded-full bg-sky/15 blur-3xl" />
+        <div className="relative mx-auto max-w-6xl">
         <Reveal className="text-center">
           <p className="text-sm uppercase tracking-[0.3em] text-gold">{t.ministerios.etiqueta}</p>
           <h2 className="mt-3 font-serif text-4xl font-bold sm:text-5xl">{t.ministerios.titulo}</h2>
@@ -60,6 +63,7 @@ export function Ministries() {
               <Tarjeta m={m} />
             </Reveal>
           ))}
+        </div>
         </div>
       </div>
     </section>

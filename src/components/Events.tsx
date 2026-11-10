@@ -17,7 +17,7 @@ export function Events() {
   const nombreCat = (c: string) => (c === "todos" ? t.eventos.todos : t.eventos.categorias[c as keyof typeof t.eventos.categorias]);
 
   return (
-    <section id="eventos" className="px-5 py-24">
+    <section id="eventos" className="scroll-mt-24 px-5 py-24">
       <div className="mx-auto max-w-5xl">
         <Reveal className="text-center">
           <p className="text-sm uppercase tracking-[0.3em] text-flame">{t.eventos.etiqueta}</p>
@@ -53,7 +53,7 @@ export function Events() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   whileHover={{ x: 8 }}
-                  className="group flex items-center gap-6 rounded-2xl border border-stone-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-xl"
+                  className="group flex items-center gap-6 rounded-2xl border border-white/70 bg-white/70 p-5 shadow-sm backdrop-blur transition-shadow hover:shadow-xl"
                 >
                   <div className="flex h-20 w-20 shrink-0 flex-col items-center justify-center rounded-xl bg-gradient-to-br from-gold to-flame text-ink">
                     <span className="font-serif text-3xl font-bold leading-none">{dia}</span>

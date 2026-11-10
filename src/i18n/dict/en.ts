@@ -27,7 +27,11 @@ const en: Dict = {
     menu: "Menu",
     idioma: "Language",
   },
+  instagram: { etiqueta: "Instagram", titulo: "Latest on our Instagram", seguir: "Follow us on Instagram", ver: "View on Instagram" },
+  galeria: { etiqueta: "Gallery", titulo: "Moments of our family" },
   hero: {
+    direccion: "Address",
+    etiqueta: "Korean Pentecostal Church in Argentina",
     bienvenido: "Welcome home",
     visitanos: "Visit us this Sunday",
     verEnVivo: "Watch live",

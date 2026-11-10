@@ -18,7 +18,7 @@ export function Contact() {
   const enviado = state?.ok && !otro;
 
   return (
-    <section id="contacto" className="bg-white px-5 py-24">
+    <section id="contacto" className="scroll-mt-24 px-5 py-24">
       <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
         <div>
           <Reveal>
