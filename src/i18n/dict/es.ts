@@ -27,6 +27,7 @@ const es = {
     idioma: "Idioma",
   },
   instagram: { etiqueta: "Instagram", titulo: "Lo último en nuestro Instagram", seguir: "Síguenos en Instagram", ver: "Ver en Instagram" },
+  youtube: { etiqueta: "YouTube", titulo: "Últimos videos", ver: "Reproducir", canal: "Ver el canal en YouTube" },
   galeria: { etiqueta: "Galería", titulo: "Momentos de nuestra familia" },
   hero: {
     direccion: "Dirección",

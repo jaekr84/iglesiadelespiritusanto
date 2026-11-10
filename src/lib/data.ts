@@ -7,6 +7,7 @@ export const iglesia = {
   email: "contacto@iglesiaespiritusanto.org",
   mapaUrl: "https://www.google.com/maps?q=Jos%C3%A9+M%C3%A1rmol+964,+CABA,+Argentina&output=embed",
   youtube: "https://www.youtube.com/@iglesiadelespiritusanto859",
+  youtubeCanalId: "UCow7dgDZu5DBldbuRpOFmbA",
   facebook: "https://www.facebook.com/laiglesiadelespiritusanto",
   instagram: "https://www.instagram.com/laiglesiadelespiritusanto.ig/",
   donacionesUrl: "#",

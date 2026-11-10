@@ -28,6 +28,7 @@ const en: Dict = {
     idioma: "Language",
   },
   instagram: { etiqueta: "Instagram", titulo: "Latest on our Instagram", seguir: "Follow us on Instagram", ver: "View on Instagram" },
+  youtube: { etiqueta: "YouTube", titulo: "Latest videos", ver: "Play", canal: "Visit our YouTube channel" },
   galeria: { etiqueta: "Gallery", titulo: "Moments of our family" },
   hero: {
     direccion: "Address",

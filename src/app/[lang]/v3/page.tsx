@@ -10,6 +10,7 @@ import { Foto } from "@/components/v3/Foto";
 import { SeccionInstagram } from "@/components/v3/Instagram";
 import { Portada } from "@/components/v3/Portada";
 import { TemaV3 } from "@/components/v3/TemaV3";
+import { SeccionYoutube } from "@/components/v3/Youtube";
 import { intlLocale } from "@/i18n/config";
 import { getDict, getLocale } from "@/i18n/server";
 import { estadisticas, eventos, fotos, iglesia, ministerios, servicios } from "@/lib/data";
@@ -159,6 +160,13 @@ export default async function LandingV3() {
               encabezadoInstagram={<Titulo etiqueta={t.instagram.etiqueta} titulo={t.instagram.titulo} centro />}
               encabezadoGaleria={<Titulo etiqueta={t.galeria.etiqueta} titulo={t.galeria.titulo} centro />}
             />
+          </Suspense>
+        </Seccion>
+
+        {/* ── YouTube: últimos 3 videos ───────────────────────── */}
+        <Seccion id="videos">
+          <Suspense fallback={<div className="grid gap-5 md:grid-cols-3">{Array.from({ length: 3 }, (_, i) => <div key={i} className="aspect-video animate-pulse rounded-2xl bg-white/5" />)}</div>}>
+            <SeccionYoutube encabezado={<Titulo etiqueta={t.youtube.etiqueta} titulo={t.youtube.titulo} />} />
           </Suspense>
         </Seccion>
 

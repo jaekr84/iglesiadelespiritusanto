@@ -7,11 +7,11 @@ import { getPublicaciones } from "@/lib/instagram";
 import { Galeria } from "./Galeria";
 
 /**
- * Últimas 6 publicaciones de Instagram (vía Behold). Si el feed no está configurado
+ * Últimas 3 publicaciones de Instagram (vía Behold). Si el feed no está configurado
  * o falla, muestra la galería de fotos locales.
  */
 export async function SeccionInstagram({ encabezadoInstagram, encabezadoGaleria }: { encabezadoInstagram: ReactNode; encabezadoGaleria: ReactNode }) {
-  const [t, publicaciones] = await Promise.all([getDict(), getPublicaciones(6)]);
+  const [t, publicaciones] = await Promise.all([getDict(), getPublicaciones(3)]);
 
   if (!publicaciones?.length) {
     return (
@@ -27,10 +27,10 @@ export async function SeccionInstagram({ encabezadoInstagram, encabezadoGaleria 
   return (
     <>
       {encabezadoInstagram}
-      <ul className="mt-14 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
+      <ul className="mt-14 grid gap-3 sm:grid-cols-3 sm:gap-4">
         {publicaciones.map((p, i) => (
           <li key={p.id}>
-            <Reveal delay={(i % 3) * 0.08} y={24}>
+            <Reveal delay={i * 0.08} y={24}>
               <a
                 href={p.enlace}
                 target="_blank"

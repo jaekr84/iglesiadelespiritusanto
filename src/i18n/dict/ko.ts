@@ -28,6 +28,7 @@ const ko: Dict = {
     idioma: "언어",
   },
   instagram: { etiqueta: "Instagram", titulo: "인스타그램 최신 소식", seguir: "인스타그램 팔로우하기", ver: "인스타그램에서 보기" },
+  youtube: { etiqueta: "YouTube", titulo: "최신 영상", ver: "재생", canal: "유튜브 채널 보기" },
   galeria: { etiqueta: "갤러리", titulo: "우리 가족의 순간들" },
   hero: {
     direccion: "주소",
