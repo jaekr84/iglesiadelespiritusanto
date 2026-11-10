@@ -343,7 +343,7 @@ const es = {
     cancelar: "Cancelar",
     editar: "Editar",
     borrar: "Borrar",
-    confirmarBorrar: "¿Borrar este evento? No se puede deshacer.",
+    confirmarBorrar: "¿Borrarlo? No se puede deshacer.",
     errores: {
       permiso: "Solo un administrador puede gestionar eventos.",
       fecha: "Elige una fecha válida.",

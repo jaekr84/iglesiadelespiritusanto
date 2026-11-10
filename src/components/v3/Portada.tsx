@@ -27,12 +27,12 @@ export function Portada({ foto }: { foto: string }) {
       <div className="absolute inset-0 bg-gradient-to-b from-[#0e0c0a]/50 via-[#0e0c0a]/25 to-[#0e0c0a]" />
       <div className="absolute inset-0 bg-gradient-to-r from-[#0e0c0a]/80 via-transparent to-transparent" />
 
-      <motion.div style={{ y: yTexto, opacity: opacidad }} className="relative mx-auto w-full max-w-7xl px-5 pb-20 sm:px-8 sm:pb-28">
+      <motion.div style={{ y: yTexto, opacity: opacidad }} className="relative mx-auto w-full max-w-7xl px-5 pb-14 pt-28 sm:px-8 sm:pb-28">
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-xs uppercase tracking-[0.35em] text-[#e8a65a]"
+          className="text-[11px] uppercase tracking-[0.3em] text-[#e8a65a] sm:text-xs sm:tracking-[0.35em]"
         >
           {t.hero.etiqueta}
         </motion.p>
@@ -40,7 +40,7 @@ export function Portada({ foto }: { foto: string }) {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-5 max-w-4xl text-5xl font-semibold leading-[1.02] tracking-tight text-white sm:text-7xl lg:text-8xl"
+          className="mt-4 max-w-4xl text-[2.6rem] font-semibold leading-[1.02] tracking-tight text-white sm:mt-5 sm:text-7xl lg:text-8xl"
         >
           {t.iglesia.nombre}
         </motion.h1>
@@ -48,7 +48,7 @@ export function Portada({ foto }: { foto: string }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.25 }}
-          className="v2-display mt-6 max-w-2xl text-2xl italic text-white/80 sm:text-3xl"
+          className="v2-display mt-4 max-w-2xl text-xl italic text-white/80 sm:mt-6 sm:text-3xl"
         >
           {t.iglesia.lema}
         </motion.p>
@@ -57,20 +57,20 @@ export function Portada({ foto }: { foto: string }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center"
+          className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:items-center sm:gap-4"
         >
-          <a href="#horarios" className="rounded-full bg-[#e8a65a] px-7 py-3.5 text-center font-medium text-black transition hover:bg-white">
+          <a href="#horarios" className="rounded-full bg-[#e8a65a] px-7 py-3 text-center sm:py-3.5 font-medium text-black transition hover:bg-white">
             {t.hero.visitanos}
           </a>
           <a
             href={iglesia.youtube}
             target="_blank"
             rel="noreferrer"
-            className="flex items-center justify-center gap-2 rounded-full border border-white/30 px-7 py-3.5 text-white backdrop-blur transition hover:bg-white/10"
+            className="flex items-center justify-center gap-2 rounded-full border border-white/30 px-7 py-3 sm:py-3.5 text-white backdrop-blur transition hover:bg-white/10"
           >
             <PlayCircle className="h-5 w-5" /> {t.hero.verEnVivo}
           </a>
-          <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/60 sm:ml-6">
+          <div className="mt-2 flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/60 sm:ml-6 sm:mt-0">
             <span className="flex items-center gap-2">
               <Clock className="h-4 w-4 text-[#e8a65a]" /> {nombreDia(culto.day, locale)} {formatHora(culto.hora, culto.minuto, locale)}
             </span>

@@ -54,3 +54,28 @@ body {
 
 /* En coreano, no cortar palabras al hacer salto de línea */
 :lang(ko) { word-break: keep-all; }
+
+/* ── Carrusel en el celular, grilla desde 640px ──
+   En pantallas chicas las tarjetas se deslizan con el dedo (se ve el borde de la
+   siguiente para invitar a deslizar). Desde sm vuelve a ser una grilla normal:
+   las columnas se eligen con sm:grid-cols-* / lg:grid-cols-* en el propio <ul>. */
+@layer components {
+  .carrusel-movil {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 1.25rem;
+    margin-inline: -1.25rem;
+    padding-inline: 1.25rem;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+  }
+  .carrusel-movil::-webkit-scrollbar { display: none; }
+  .carrusel-movil > * { flex: 0 0 82%; scroll-snap-align: start; }
+  @media (min-width: 640px) {
+    .carrusel-movil { display: grid; gap: 1.25rem; overflow: visible; margin-inline: 0; padding-inline: 0; padding-bottom: 0; }
+    .carrusel-movil > * { flex: none; }
+  }
+}

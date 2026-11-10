@@ -28,7 +28,7 @@ function Titulo({ etiqueta, titulo, sub, centro = false }: { etiqueta: string; t
   return (
     <Reveal y={24} className={centro ? "text-center" : ""}>
       <p className="text-xs uppercase tracking-[0.35em] text-[#e8a65a]">{etiqueta}</p>
-      <h2 className="mt-4 text-4xl font-semibold tracking-tight text-white sm:text-6xl">{titulo}</h2>
+      <h2 className="mt-3 text-[2.1rem] font-semibold leading-tight tracking-tight text-white sm:mt-4 sm:text-6xl">{titulo}</h2>
       {sub && <p className={`v2-display mt-4 max-w-2xl text-xl italic text-white/60 sm:text-2xl ${centro ? "mx-auto" : ""}`}>{sub}</p>}
     </Reveal>
   );
@@ -36,7 +36,7 @@ function Titulo({ etiqueta, titulo, sub, centro = false }: { etiqueta: string; t
 
 function Seccion({ id, children, className = "" }: { id?: string; children: ReactNode; className?: string }) {
   return (
-    <section id={id} className={`mx-auto max-w-7xl scroll-mt-24 px-5 py-24 sm:px-8 sm:py-32 ${className}`}>
+    <section id={id} className={`mx-auto max-w-7xl scroll-mt-24 px-5 py-16 sm:px-8 sm:py-24 lg:py-32 ${className}`}>
       {children}
     </section>
   );
@@ -59,6 +59,11 @@ export default async function LandingV3() {
             <CuentaNav />
           </Suspense>
         }
+        cuentaMenu={
+          <Suspense>
+            <CuentaNav variante="menu" />
+          </Suspense>
+        }
       />
 
       <main>
@@ -66,7 +71,7 @@ export default async function LandingV3() {
 
         {/* ── Horarios ───────────────────────────────────────── */}
         <Seccion id="horarios">
-          <div className="grid items-center gap-14 lg:grid-cols-2">
+          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
             <div>
               <Titulo etiqueta={t.nav.horarios} titulo={t.servicio.proxima} />
               <div className="mt-10">
@@ -91,7 +96,7 @@ export default async function LandingV3() {
               </ul>
             </div>
             <Reveal delay={0.1}>
-              <Foto src={fotos.culto} alt={t.servicios.culto.nombre} fundido="todo" sizes="(min-width: 1024px) 50vw, 100vw" className="aspect-[4/5] sm:aspect-[4/3] lg:aspect-[4/5]" />
+              <Foto src={fotos.culto} alt={t.servicios.culto.nombre} fundido="todo" sizes="(min-width: 1024px) 50vw, 100vw" className="aspect-[4/3] lg:aspect-[4/5]" />
             </Reveal>
           </div>
         </Seccion>
@@ -99,7 +104,7 @@ export default async function LandingV3() {
         {/* ── Eventos ────────────────────────────────────────── */}
         <Seccion id="eventos">
           <Titulo etiqueta={t.eventos.etiqueta} titulo={t.eventos.titulo} />
-          <Reveal delay={0.1} className="mt-12">
+          <Reveal delay={0.1} className="mt-10 sm:mt-12">
             <Calendario eventos={eventos} />
           </Reveal>
         </Seccion>
@@ -107,21 +112,21 @@ export default async function LandingV3() {
         {/* ── Nosotros ───────────────────────────────────────── */}
         <section id="nosotros" className="relative scroll-mt-24">
           <div className="relative">
-            <Foto src={fotos.comunidad} alt={t.nosotros.titulo} fundido="vertical" className="h-[60svh] w-full sm:h-[80svh]" />
+            <Foto src={fotos.comunidad} alt={t.nosotros.titulo} fundido="vertical" className="h-[45svh] w-full sm:h-[80svh]" />
             <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#0e0c0a] to-transparent" />
           </div>
-          <div className="relative mx-auto -mt-[12svh] max-w-7xl px-5 pb-24 sm:px-8">
-            <div className="grid gap-12 lg:grid-cols-2">
+          <div className="relative mx-auto -mt-[10svh] max-w-7xl px-5 pb-16 sm:-mt-[12svh] sm:px-8 sm:pb-24">
+            <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
               <Titulo etiqueta={t.nosotros.etiqueta} titulo={t.nosotros.titulo} />
-              <Reveal delay={0.1} className="space-y-5 text-lg leading-relaxed text-white/70 lg:pt-10">
+              <Reveal delay={0.1} className="space-y-5 text-base leading-relaxed text-white/70 sm:text-lg lg:pt-10">
                 <p>{t.nosotros.p1}</p>
                 <p>{t.nosotros.p2}</p>
               </Reveal>
             </div>
-            <dl className="mt-16 grid grid-cols-2 gap-8 border-t border-white/10 pt-10 lg:grid-cols-4">
+            <dl className="mt-12 grid grid-cols-2 gap-x-6 gap-y-8 border-t border-white/10 pt-10 sm:mt-16 lg:grid-cols-4">
               {estadisticas.map((e, i) => (
                 <Reveal key={e.id} delay={i * 0.06}>
-                  <dd className="text-5xl font-semibold tracking-tight text-white">
+                  <dd className="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
                     {e.valor.toLocaleString(intlLocale[locale])}
                     <span className="text-[#e8a65a]">{e.sufijo}</span>
                   </dd>
@@ -129,9 +134,9 @@ export default async function LandingV3() {
                 </Reveal>
               ))}
             </dl>
-            <Reveal className="mt-20 text-center">
+            <Reveal className="mt-14 text-center sm:mt-20">
               <blockquote className="mx-auto max-w-3xl">
-                <p className="v2-display text-3xl italic leading-snug text-white sm:text-4xl">“{t.nosotros.versiculo}”</p>
+                <p className="v2-display text-2xl italic leading-snug text-white sm:text-4xl">“{t.nosotros.versiculo}”</p>
                 <footer className="mt-4 text-xs uppercase tracking-[0.3em] text-[#e8a65a]">{t.nosotros.cita}</footer>
               </blockquote>
             </Reveal>
@@ -141,7 +146,7 @@ export default async function LandingV3() {
         {/* ── Ministerios ────────────────────────────────────── */}
         <Seccion id="ministerios">
           <Titulo etiqueta={t.ministerios.etiqueta} titulo={t.ministerios.titulo} sub={t.ministerios.sub} />
-          <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="carrusel-movil mt-10 sm:mt-14 sm:grid-cols-2 lg:grid-cols-3">
             {ministerios.map((m, i) => (
               <li key={m.id}>
                 <Reveal delay={(i % 3) * 0.08}>
@@ -184,7 +189,7 @@ export default async function LandingV3() {
 
         {/* ── Contacto ───────────────────────────────────────── */}
         <Seccion id="contacto">
-          <div className="grid gap-14 lg:grid-cols-2">
+          <div className="grid gap-10 lg:grid-cols-2 lg:gap-14 [&>*]:min-w-0">
             <div>
               <Titulo etiqueta={t.contacto.etiqueta} titulo={t.contacto.titulo} sub={t.contacto.sub} />
               <Reveal delay={0.1}>
@@ -196,13 +201,13 @@ export default async function LandingV3() {
                   ].map(([k, v]) => (
                     <div key={k} className="flex justify-between gap-4 py-3">
                       <dt className="text-white/50">{k}</dt>
-                      <dd className="text-right text-white">{v}</dd>
+                      <dd className="min-w-0 text-right text-white [overflow-wrap:anywhere]">{v}</dd>
                     </div>
                   ))}
                 </dl>
                 <iframe
                   src={iglesia.mapaUrl}
-                  className="mt-8 h-64 w-full rounded-2xl opacity-80 [filter:grayscale(1)_invert(0.92)_contrast(0.9)]"
+                  className="mt-8 h-56 w-full rounded-2xl sm:h-64 opacity-80 [filter:grayscale(1)_invert(0.92)_contrast(0.9)]"
                   loading="lazy"
                   title={t.contacto.mapa}
                 />

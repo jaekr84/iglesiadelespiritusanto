@@ -344,7 +344,7 @@ const ko: Dict = {
     cancelar: "취소",
     editar: "수정",
     borrar: "삭제",
-    confirmarBorrar: "이 행사를 삭제할까요? 되돌릴 수 없습니다.",
+    confirmarBorrar: "삭제할까요? 되돌릴 수 없습니다.",
     errores: {
       permiso: "관리자만 행사를 관리할 수 있습니다.",
       fecha: "올바른 날짜를 선택하세요.",

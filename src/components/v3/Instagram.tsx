@@ -27,7 +27,7 @@ export async function SeccionInstagram({ encabezadoInstagram, encabezadoGaleria 
   return (
     <>
       {encabezadoInstagram}
-      <ul className="mt-14 grid gap-3 sm:grid-cols-3 sm:gap-4">
+      <ul className="carrusel-movil mt-10 sm:mt-14 sm:grid-cols-3">
         {publicaciones.map((p, i) => (
           <li key={p.id}>
             <Reveal delay={i * 0.08} y={24}>

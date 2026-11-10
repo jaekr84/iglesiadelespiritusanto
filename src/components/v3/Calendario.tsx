@@ -95,9 +95,9 @@ export function Calendario({ eventos }: { eventos: EventoCalendario[] }) {
   return (
     <div className="grid gap-6 lg:grid-cols-[1.1fr_1fr] lg:gap-10">
       {/* ── Calendario ── */}
-      <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-4 sm:p-6">
+      <div className="-mx-2 rounded-3xl border border-white/10 bg-white/[0.03] p-3 sm:mx-0 sm:p-6">
         <div className="mb-5 flex items-center justify-between">
-          <h3 className="text-xl font-semibold capitalize text-white sm:text-2xl" aria-live="polite">
+          <h3 className="text-xl font-semibold text-white first-letter:uppercase sm:text-2xl" aria-live="polite">
             {tituloMes}
           </h3>
           <div className="flex gap-1">
@@ -177,14 +177,14 @@ export function Calendario({ eventos }: { eventos: EventoCalendario[] }) {
             )}
 
             {delDia.length > 0 ? (
-              <ul className="mt-6 space-y-8">
+              <ul className="mt-5 space-y-8 sm:mt-6">
                 {delDia.map((e) => (
                   <li key={e.id} className="border-l-2 border-white/10 pl-5">
                     <span className="inline-flex items-center gap-1.5 text-xs uppercase tracking-[0.2em] text-white/50">
                       <span className={`h-2 w-2 rounded-full ${COLOR_CATEGORIA[e.categoria]}`} /> {t.eventos.categorias[e.categoria]}
                     </span>
-                    <h3 className="mt-2 text-3xl font-semibold leading-tight text-white sm:text-4xl">{e.titulo}</h3>
-                    {e.descripcion && <p className="mt-3 text-lg leading-relaxed text-white/70">{e.descripcion}</p>}
+                    <h3 className="mt-2 text-2xl font-semibold leading-tight text-white sm:text-4xl">{e.titulo}</h3>
+                    {e.descripcion && <p className="mt-3 text-base leading-relaxed text-white/70 sm:text-lg">{e.descripcion}</p>}
                     <dl className="mt-5 space-y-2 text-sm text-white/70">
                       <div className="flex items-center gap-2">
                         <dt className="sr-only">{t.eventos.calendario.hora}</dt>

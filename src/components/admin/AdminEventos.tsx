@@ -87,6 +87,7 @@ function FilaEvento({ evento, locale, onEditar }: { evento: EventoCompleto; loca
   const { t } = useI18n();
   const [pending, start] = useTransition();
   const [error, setError] = useState<ErrorEvento | null>(null);
+  const [confirmando, setConfirmando] = useState(false);
   const [y, m, d] = evento.fecha.split("-").map(Number);
   const fecha = new Date(y, m - 1, d);
   const textos = evento.textos[locale]?.titulo ? evento.textos[locale] : evento.textos.es;
@@ -118,26 +119,45 @@ function FilaEvento({ evento, locale, onEditar }: { evento: EventoCompleto; loca
         )}
         {error && <p className="mt-1 text-xs text-red-400">{t.eventosAdmin.errores[error]}</p>}
       </div>
-      <div className="flex gap-1">
-        <button type="button" onClick={onEditar} aria-label={t.eventosAdmin.editar} className="grid h-9 w-9 place-items-center rounded-full text-white/60 transition hover:bg-white/10 hover:text-white">
-          <Pencil className="h-4 w-4" />
-        </button>
-        <button
-          type="button"
-          disabled={pending}
-          aria-label={t.eventosAdmin.borrar}
-          onClick={() => {
-            if (!confirm(`${t.eventosAdmin.confirmarBorrar}\n\n${textos.titulo}`)) return;
-            start(async () => {
-              const r = await borrarEvento(evento.id);
-              if ("error" in r) setError(r.error);
-            });
-          }}
-          className="grid h-9 w-9 place-items-center rounded-full text-white/60 transition hover:bg-red-500/20 hover:text-red-300"
-        >
-          {pending ? <Loader2 className="h-4 w-4 animate-spin" /> : <Trash2 className="h-4 w-4" />}
-        </button>
-      </div>
+      {confirmando ? (
+        // Confirmación dentro de la fila (los diálogos nativos son incómodos en el celular)
+        <div className="flex w-full items-center justify-end gap-2 sm:w-auto">
+          <span className="text-sm text-white/70">{t.eventosAdmin.confirmarBorrar}</span>
+          <button
+            type="button"
+            disabled={pending}
+            onClick={() =>
+              start(async () => {
+                const r = await borrarEvento(evento.id);
+                if ("error" in r) {
+                  setError(r.error);
+                  setConfirmando(false);
+                }
+              })
+            }
+            className="inline-flex items-center gap-1.5 rounded-full bg-red-500/80 px-3 py-1.5 text-sm font-medium text-white transition hover:bg-red-500"
+          >
+            {pending ? <Loader2 className="h-4 w-4 animate-spin" /> : <Trash2 className="h-4 w-4" />} {t.eventosAdmin.borrar}
+          </button>
+          <button type="button" disabled={pending} onClick={() => setConfirmando(false)} className="rounded-full px-3 py-1.5 text-sm text-white/60 hover:text-white">
+            {t.eventosAdmin.cancelar}
+          </button>
+        </div>
+      ) : (
+        <div className="flex gap-1">
+          <button type="button" onClick={onEditar} aria-label={t.eventosAdmin.editar} className="grid h-9 w-9 place-items-center rounded-full text-white/60 transition hover:bg-white/10 hover:text-white">
+            <Pencil className="h-4 w-4" />
+          </button>
+          <button
+            type="button"
+            aria-label={t.eventosAdmin.borrar}
+            onClick={() => setConfirmando(true)}
+            className="grid h-9 w-9 place-items-center rounded-full text-white/60 transition hover:bg-red-500/20 hover:text-red-300"
+          >
+            <Trash2 className="h-4 w-4" />
+          </button>
+        </div>
+      )}
     </li>
   );
 }

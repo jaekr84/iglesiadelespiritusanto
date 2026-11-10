@@ -54,12 +54,14 @@ export function VistaSwitcherUI({ actual }: { actual: number }) {
         onClick={() => setAbierto(!abierto)}
         whileHover={{ scale: 1.04 }}
         whileTap={{ scale: 0.96 }}
-        className={`ml-auto flex items-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold shadow-2xl ${
+        aria-label={v.verComo}
+        className={`ml-auto flex items-center gap-2 rounded-full px-3 py-2.5 sm:px-4 text-sm font-semibold shadow-2xl ${
           simulando ? "bg-gradient-to-r from-[#f5b942] to-[#f97316] text-[#120f1f]" : "border border-white/15 bg-[#120f1f]/90 text-white backdrop-blur"
         }`}
       >
         {pending ? <Loader2 className="h-4 w-4 animate-spin" /> : <Eye className="h-4 w-4" />}
-        {simulando ? fmt(v.viendoComo, { rol: nombre ?? "" }) : v.verComo}
+        {/* En el celular solo el ícono, salvo que esté simulando otro rol */}
+        <span className={simulando ? "" : "hidden sm:inline"}>{simulando ? fmt(v.viendoComo, { rol: nombre ?? "" }) : v.verComo}</span>
       </motion.button>
     </div>
   );

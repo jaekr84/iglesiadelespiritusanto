@@ -8,7 +8,7 @@ import { useI18n } from "@/i18n/client";
 import { iglesia } from "@/lib/data";
 import { IdiomaSwitcher } from "./IdiomaSwitcher";
 
-export function Navbar({ cuenta, marca }: { cuenta?: ReactNode; marca?: ReactNode }) {
+export function Navbar({ cuenta, cuentaMenu, marca }: { cuenta?: ReactNode; cuentaMenu?: ReactNode; marca?: ReactNode }) {
   const { t, href } = useI18n();
   const { scrollY, scrollYProgress } = useScroll();
   const [scrolled, setScrolled] = useState(false);
@@ -16,11 +16,12 @@ export function Navbar({ cuenta, marca }: { cuenta?: ReactNode; marca?: ReactNod
 
   useMotionValueEvent(scrollY, "change", (v) => setScrolled(v > 40));
 
+  // Mismo orden que las secciones de la página
   const links = [
-    { href: "#nosotros", label: t.nav.nosotros },
     { href: "#horarios", label: t.nav.horarios },
-    { href: "#ministerios", label: t.nav.ministerios },
     { href: "#eventos", label: t.nav.eventos },
+    { href: "#nosotros", label: t.nav.nosotros },
+    { href: "#ministerios", label: t.nav.ministerios },
     { href: "#contacto", label: t.nav.contacto },
     { href: href("/foro"), label: t.nav.foro },
   ];
@@ -62,7 +63,7 @@ export function Navbar({ cuenta, marca }: { cuenta?: ReactNode; marca?: ReactNod
           ))}
         </ul>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2">
           <a
             href={iglesia.donacionesUrl}
             className="hidden whitespace-nowrap rounded-full border border-white/30 px-4 py-1.5 text-sm font-medium transition hover:border-gold hover:text-gold xl:inline-block"
@@ -71,7 +72,7 @@ export function Navbar({ cuenta, marca }: { cuenta?: ReactNode; marca?: ReactNod
           </a>
           <IdiomaSwitcher compacto />
           {cuenta}
-          <button className="lg:hidden" onClick={() => setOpen(!open)} aria-label={t.nav.menu}>
+          <button className="grid h-9 w-9 place-items-center rounded-full lg:hidden" onClick={() => setOpen(!open)} aria-label={t.nav.menu} aria-expanded={open}>
             {open ? <X /> : <Menu />}
           </button>
         </div>
@@ -92,6 +93,12 @@ export function Navbar({ cuenta, marca }: { cuenta?: ReactNode; marca?: ReactNod
                 </Link>
               </motion.li>
             ))}
+            {cuentaMenu && (
+              // Panel / Registrarse / Salir: en el celular no entran en la barra
+              <li onClick={() => setOpen(false)} className="sm:hidden [&>*:last-child]:border-b-0">
+                {cuentaMenu}
+              </li>
+            )}
           </motion.ul>
         )}
       </AnimatePresence>

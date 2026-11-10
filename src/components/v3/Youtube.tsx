@@ -15,7 +15,7 @@ export async function SeccionYoutube({ encabezado }: { encabezado: ReactNode }) 
   return (
     <>
       {encabezado}
-      <ul className="mt-14 grid gap-8 md:grid-cols-3 md:gap-5">
+      <ul className="carrusel-movil mt-10 sm:mt-14 sm:grid-cols-3">
         {videos.map((v, i) => (
           <li key={v.id}>
             <Reveal delay={i * 0.08} y={24}>

@@ -344,7 +344,7 @@ const en: Dict = {
     cancelar: "Cancel",
     editar: "Edit",
     borrar: "Delete",
-    confirmarBorrar: "Delete this event? This cannot be undone.",
+    confirmarBorrar: "Delete it? This cannot be undone.",
     errores: {
       permiso: "Only an administrator can manage events.",
       fecha: "Choose a valid date.",

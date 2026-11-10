@@ -19,7 +19,8 @@ export function Reveal({
       className={className}
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
+      // Solo margen vertical: así las tarjetas que asoman al costado en los carruseles del celular ya se ven
+      viewport={{ once: true, margin: "-80px 0px" }}
       transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
