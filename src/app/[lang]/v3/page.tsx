@@ -6,6 +6,7 @@ import { Navbar } from "@/components/Navbar";
 import { Reveal } from "@/components/Reveal";
 import { Formulario } from "@/components/v3/Formulario";
 import { Proxima } from "@/components/v3/Proxima";
+import { Calendario } from "@/components/v3/Calendario";
 import { Foto } from "@/components/v3/Foto";
 import { SeccionInstagram } from "@/components/v3/Instagram";
 import { Portada } from "@/components/v3/Portada";
@@ -13,7 +14,9 @@ import { TemaV3 } from "@/components/v3/TemaV3";
 import { SeccionYoutube } from "@/components/v3/Youtube";
 import { intlLocale } from "@/i18n/config";
 import { getDict, getLocale } from "@/i18n/server";
-import { estadisticas, eventos, fotos, iglesia, ministerios, servicios } from "@/lib/data";
+import { getFotos } from "@/lib/contenido";
+import { estadisticas, iglesia, ministerios, servicios } from "@/lib/data";
+import { getEventos } from "@/lib/eventos";
 import { formatHora, nombreDia } from "@/lib/horario";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -40,7 +43,8 @@ function Seccion({ id, children, className = "" }: { id?: string; children: Reac
 }
 
 export default async function LandingV3() {
-  const [t, locale] = await Promise.all([getDict(), getLocale()]);
+  const [t, locale, fotos] = await Promise.all([getDict(), getLocale(), getFotos()]);
+  const eventos = await getEventos(locale);
 
   return (
     <TemaV3>
@@ -58,7 +62,7 @@ export default async function LandingV3() {
       />
 
       <main>
-        <Portada />
+        <Portada foto={fotos.portada} />
 
         {/* ── Horarios ───────────────────────────────────────── */}
         <Seccion id="horarios">
@@ -90,6 +94,14 @@ export default async function LandingV3() {
               <Foto src={fotos.culto} alt={t.servicios.culto.nombre} fundido="todo" sizes="(min-width: 1024px) 50vw, 100vw" className="aspect-[4/5] sm:aspect-[4/3] lg:aspect-[4/5]" />
             </Reveal>
           </div>
+        </Seccion>
+
+        {/* ── Eventos ────────────────────────────────────────── */}
+        <Seccion id="eventos">
+          <Titulo etiqueta={t.eventos.etiqueta} titulo={t.eventos.titulo} />
+          <Reveal delay={0.1} className="mt-12">
+            <Calendario eventos={eventos} />
+          </Reveal>
         </Seccion>
 
         {/* ── Nosotros ───────────────────────────────────────── */}
@@ -168,38 +180,6 @@ export default async function LandingV3() {
           <Suspense fallback={<div className="grid gap-5 md:grid-cols-3">{Array.from({ length: 3 }, (_, i) => <div key={i} className="aspect-video animate-pulse rounded-2xl bg-white/5" />)}</div>}>
             <SeccionYoutube encabezado={<Titulo etiqueta={t.youtube.etiqueta} titulo={t.youtube.titulo} />} />
           </Suspense>
-        </Seccion>
-
-        {/* ── Eventos ────────────────────────────────────────── */}
-        <Seccion id="eventos">
-          <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr]">
-            <Titulo etiqueta={t.eventos.etiqueta} titulo={t.eventos.titulo} />
-            <ul className="divide-y divide-white/10 border-y border-white/10">
-              {eventos.map((e, i) => {
-                const [anio, mes, dia] = e.fecha.split("-").map(Number);
-                const fecha = new Date(anio, mes - 1, dia);
-                return (
-                  <li key={e.id}>
-                    <Reveal delay={i * 0.05} y={16} className="flex gap-6 py-6">
-                      <div className="w-16 shrink-0 text-center">
-                        <p className="text-4xl font-semibold leading-none text-white">{dia}</p>
-                        <p className="mt-1 text-xs uppercase tracking-[0.2em] text-[#e8a65a]">
-                          {fecha.toLocaleDateString(intlLocale[locale], { month: "short" }).replace(".", "")}
-                        </p>
-                      </div>
-                      <div>
-                        <p className="text-xs uppercase tracking-[0.2em] text-white/40">
-                          {t.eventos.categorias[e.categoria]} · {t.eventos.lugares[e.lugar]}
-                        </p>
-                        <h3 className="mt-1 text-xl font-medium text-white">{t.eventos.items[e.id].titulo}</h3>
-                        <p className="mt-1 text-sm text-white/60">{t.eventos.items[e.id].descripcion}</p>
-                      </div>
-                    </Reveal>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
         </Seccion>
 
         {/* ── Contacto ───────────────────────────────────────── */}

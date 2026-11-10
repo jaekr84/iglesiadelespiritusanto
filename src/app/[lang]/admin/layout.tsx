@@ -23,6 +23,8 @@ async function Gate({ children }: { children: ReactNode }) {
   const tabs = [
     { href: ruta(locale, "/admin"), label: t.admin.tabs.resumen, raiz: true },
     ...(esAdmin ? [{ href: ruta(locale, "/admin/mensajes"), label: t.admin.tabs.mensajes, badge: sinLeer }] : []),
+    ...(esAdmin ? [{ href: ruta(locale, "/admin/pagina"), label: t.admin.tabs.pagina }] : []),
+    ...(esAdmin ? [{ href: ruta(locale, "/admin/eventos"), label: t.admin.tabs.eventos }] : []),
     { href: ruta(locale, "/admin/usuarios"), label: t.admin.tabs.usuarios },
     ...(esAdmin ? [{ href: ruta(locale, "/admin/bitacora"), label: t.admin.tabs.bitacora }] : []),
   ];

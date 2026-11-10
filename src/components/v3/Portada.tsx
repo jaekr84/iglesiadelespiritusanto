@@ -5,11 +5,11 @@ import Image from "next/image";
 import { ArrowDown, Clock, MapPin, PlayCircle } from "lucide-react";
 import { useRef } from "react";
 import { useI18n } from "@/i18n/client";
-import { fotos, iglesia, servicios } from "@/lib/data";
+import { iglesia, servicios } from "@/lib/data";
 import { formatHora, nombreDia } from "@/lib/horario";
 
 /** Portada a pantalla completa con la foto del culto y un zoom muy lento. */
-export function Portada() {
+export function Portada({ foto }: { foto: string }) {
   const { t, locale } = useI18n();
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
@@ -21,7 +21,7 @@ export function Portada() {
   return (
     <section ref={ref} className="relative flex min-h-[100svh] items-end overflow-hidden">
       <motion.div style={{ scale: escala }} className="absolute inset-0">
-        <Image src={fotos.portada} alt="" fill priority sizes="100vw" className="object-cover object-[50%_40%]" />
+        <Image src={foto} alt="" fill priority sizes="100vw" className="object-cover object-[50%_40%]" />
       </motion.div>
       {/* Se funde hacia abajo con el fondo de la página */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#0e0c0a]/50 via-[#0e0c0a]/25 to-[#0e0c0a]" />

@@ -84,3 +84,31 @@ create index if not exists bitacora_creado_idx on bitacora_moderacion (creado_en
 -- ── Idiomas ─────────────────────────────────────────────────────────
 -- tipo guarda una clave: visita | oracion | servir | otro. idioma: es | en | ko.
 alter table mensajes_contacto add column if not exists idioma text not null default 'es';
+
+-- ── Contenido editable de la landing ───────────────────────────────
+-- Textos: clave = ruta en el diccionario ("hero.etiqueta"), idioma = es/en/ko.
+-- Fotos:  clave = "foto.<nombre>" ("foto.portada"), idioma = '*', valor = URL de Cloudinary.
+-- Si no hay fila, se usa el texto/foto por defecto del código.
+create table if not exists contenido_pagina (
+  clave           text not null check (char_length(clave) between 1 and 100),
+  idioma          text not null check (idioma in ('es','en','ko','*')),
+  valor           text not null check (char_length(valor) between 1 and 5000),
+  actualizado_por uuid references neon_auth."user"(id) on delete set null,
+  actualizado_en  timestamptz not null default now(),
+  primary key (clave, idioma)
+);
+
+-- ── Eventos (calendario de la landing, se cargan desde el panel) ───
+-- textos: { "es": { "titulo", "descripcion", "lugar" }, "en": {...}, "ko": {...} }
+-- Solo "es.titulo" es obligatorio; los demás idiomas usan el español si están vacíos.
+create table if not exists eventos (
+  id             bigint generated always as identity primary key,
+  fecha          date not null,
+  hora           text check (hora ~ '^([01][0-9]|2[0-3]):[0-5][0-9]$'),
+  categoria      text not null default 'otro' check (categoria in ('adoracion','celebracion','jovenes','familia','otro')),
+  textos         jsonb not null,
+  creado_por     uuid references neon_auth."user"(id) on delete set null,
+  creado_en      timestamptz not null default now(),
+  actualizado_en timestamptz not null default now()
+);
+create index if not exists eventos_fecha_idx on eventos (fecha);

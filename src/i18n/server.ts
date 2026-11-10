@@ -1,5 +1,7 @@
 import { lang } from "next/root-params";
 import { notFound } from "next/navigation";
+import { getTextosEditados } from "@/lib/contenido";
+import { aplicarTextos } from "@/lib/contenido-campos";
 import { hasLocale, type Locale } from "./config";
 import en from "./dict/en";
 import es from "./dict/es";
@@ -14,9 +16,10 @@ export async function getLocale(): Promise<Locale> {
   return l;
 }
 
-/** Diccionario del idioma actual. Solo en Server Components. */
+/** Diccionario del idioma actual, con los textos editados desde el panel. Solo en Server Components. */
 export async function getDict() {
-  return diccionarios[await getLocale()];
+  const locale = await getLocale();
+  return aplicarTextos(diccionarios[locale], await getTextosEditados(locale));
 }
 
 /** Para Server Actions (no pueden usar root params): idioma recibido del formulario. */

@@ -30,13 +30,7 @@ export const ministerios = [
   { id: "social", icono: "HandHelping" },
 ] as const;
 
-export const eventos = [
-  { id: "adoracion", fecha: "2026-11-22", lugar: "templo", categoria: "adoracion" },
-  { id: "bautizos", fecha: "2026-11-29", lugar: "templo", categoria: "celebracion" },
-  { id: "retiro", fecha: "2026-12-06", lugar: "campamento", categoria: "jovenes" },
-  { id: "cantata", fecha: "2026-12-20", lugar: "templo", categoria: "familia" },
-  { id: "nochebuena", fecha: "2026-12-24", lugar: "templo", categoria: "familia" },
-] as const;
+// Los eventos se guardan en la tabla `eventos` y se cargan desde el panel (pestaña Eventos).
 
 export const estadisticas = [
   { id: "anios", valor: 25, sufijo: "+" },
